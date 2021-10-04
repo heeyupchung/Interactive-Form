@@ -125,11 +125,10 @@ $('form').on('submit', e => {
         
     } else {
         e.preventDefault();
-        console.log('something is invalid');
     }
 });
 
-// accessbility
+// accessbility: focus states
 $('[type="checkbox"]').on('focus', e => {
     e.target.parentNode.classList.add('focus');
 });
@@ -138,4 +137,60 @@ $('[type="checkbox"]').on('blur', e => {
     e.target.parentNode.classList.remove('focus');
 });
 
-// form validation errors
+// accessibility: form validation errors
+$('form').on('submit', e => {
+    if (!isNameValid()) {
+        $name.parent().addClass('not-valid');
+        $name.parent().removeClass('valid');
+        $name.parent().children().last().show();
+    } else {
+        $name.parent().addClass('valid');
+        $name.parent().removeClass('not-valid');
+        $name.parent().children().last().hide();
+    }
+    if (!isEmailValid()) {
+        $('#email').parent().addClass('not-valid');
+        $('#email').parent().removeClass('valid');
+        $('#email').parent().children().last().show();
+    } else {
+        $('#email').parent().addClass('valid');
+        $('#email').parent().removeClass('not-valid');
+        $('#email').parent().children().last().hide();
+    }
+    if(!isActivity()) {
+        $('#activities').addClass('not-valid');
+        $('#activities').removeClass('valid');
+        $('#activities').children().last().show();
+    } else {
+        $('#activities').addClass('valid');
+        $('#activities').removeClass('not-valid');
+        $('#activities').children().last().hide();
+    }
+    if (!isCardNumberValid()) {
+        $('#cc-num').parent().addClass('not-valid');
+        $('#cc-num').parent().removeClass('valid');
+        $('#cc-num').parent().children().last().show();
+    } else {
+        $('#cc-num').parent().addClass('valid');
+        $('#cc-num').parent().removeClass('not-valid');
+        $('#cc-num').parent().children().last().hide();
+    }
+    if (!isZipValid()) {
+        $('#zip').parent().addClass('not-valid');
+        $('#zip').parent().removeClass('valid');
+        $('#zip').parent().children().last().show();
+    } else {
+        $('#zip').parent().addClass('valid');
+        $('#zip').parent().removeClass('not-valid');
+        $('#zip').parent().children().last().hide();
+    }
+    if (!isCvvValid()) {
+        $('#cvv').parent().addClass('not-valid');
+        $('#cvv').parent().removeClass('valid');
+        $('#cvv').parent().children().last().show();
+    } else {
+        $('#cvv').parent().addClass('valid');
+        $('#cvv').parent().removeClass('not-valid');
+        $('#cvv').parent().children().last().hide();
+    }
+});
