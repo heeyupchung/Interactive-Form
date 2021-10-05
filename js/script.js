@@ -10,6 +10,8 @@ const $jobRole = $('#title');
 $jobRole.on('change', e => {
     if (e.target.value === 'other') {
         $('#other-job-role').show();
+    } else {
+        $('#other-job-role').hide();
     }
 });
 
@@ -23,9 +25,13 @@ $('#design').on('change', e => {
 
     if (e.target.value === 'js puns') {
         $("[data-theme='heart js']").hide();
+        $("[data-theme='heart js']")[0].removeAttribute('selected');
+        $("[data-theme='js puns']")[0].setAttribute('selected', 'selected');
         $("[data-theme='js puns']").show();
-    } else {
+    } else if (e.target.value === 'heart js') {
         $("[data-theme='js puns']").hide();
+        $("[data-theme='js puns']")[0].removeAttribute('selected');
+        $("[data-theme='heart js']")[0].setAttribute('selected', 'selected');
         $("[data-theme='heart js']").show();
     }
 });
