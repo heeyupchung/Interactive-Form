@@ -39,6 +39,8 @@ $('#design').on('change', e => {
 // register for actvities section
 const $activities = $('.activities');
 let totalCost = 0;
+
+// event listener for updating the total cost of the activities
 $activities.on('change', e => {
     const dataCost = (parseInt($(e.target).attr('data-cost')));
     if (e.target.checked) {
@@ -55,6 +57,7 @@ $payment.val('credit-card');
 $('#paypal').hide();
 $('#bitcoin').hide();
 
+// event listener for changes in payment method to change the following information given/needed
 $payment.on('change', e => {
     if ($payment.val() === 'paypal') {
         $('#paypal').show();
@@ -76,30 +79,35 @@ $payment.on('change', e => {
 // form validation
 function isNameValid() {
     const $nameInput = $('#name').val();
+    // regex for proper name format (at least any 1 character)
     let validName = /^.+$/;
     return validName.test($nameInput);
 }
 
 function isEmailValid() {
     const $emailInput = $('#email').val();
+    // regex for a proper email address format
     let validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return validEmail.test($emailInput);
 }
 
 function isCardNumberValid() {
     const $cardNumberInput = $('#cc-num').val();
+    // regex for credit card number (between 13-16 digits)
     let validCCNumber = /^\d{13,16}$/;
     return validCCNumber.test($cardNumberInput);
 }
 
 function isZipValid() {
     const $cardNumberInput = $('#zip').val();
+    // regex for zip code (5 digits)
     let validZip = /^\d{5}$/;
     return validZip.test($cardNumberInput);
 }
 
 function isCvvValid() {
     const $cardNumberInput = $('#cvv').val();
+    // regex for cvv (3 digits)
     let validCVV = /^\d{3}$/;
     return validCVV.test($cardNumberInput);
 }
@@ -126,6 +134,7 @@ function isActivity() {
     return false;
 }
 
+// event listener to prevent the form from submitting if any user input was invalid
 $('form').on('submit', e => {
     if (isNameValid() && isEmailValid() && isCreditCard() && isActivity()) {
         
